@@ -1,0 +1,212 @@
+.aboutSection {
+  min-height: 60vh;
+  background: #090909;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.aboutInner {
+  max-width: 720px;
+}
+
+.aboutEyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #e07c3a;
+  margin-bottom: 24px;
+}
+
+.aboutHeading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(46px, 7vw, 72px);
+  line-height: 0.95;
+  color: #f5f0e8;
+  letter-spacing: 0.02em;
+  margin-bottom: 24px;
+}
+
+.aboutText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: rgba(245, 240, 232, 0.7);
+  letter-spacing: 0.04em;
+  max-width: 640px;
+  margin-bottom: 34px;
+}
+
+.aboutActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.aboutLink,
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.aboutLink {
+  background: #e07c3a;
+  color: #080808;
+}
+
+.contactLink {
+  border: 1px solid rgba(224, 124, 58, 0.4);
+  color: #f5f0e8;
+}
+
+.aboutLink:hover,
+.contactLink:hover {
+  transform: translateY(-2px);
+}
+
+.workSection {
+  min-height: 100vh;
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 48px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.workInner {
+  max-width: 960px;
+}
+
+.workEyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #e07c3a;
+  margin-bottom: 24px;
+}
+
+.workHeading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 8vw, 96px);
+  line-height: 0.9;
+  color: #f5f0e8;
+  letter-spacing: 0.03em;
+  margin-bottom: 32px;
+}
+
+.workHeadingOutline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(240, 200, 140, 0.6);
+}
+
+.workSub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(245, 240, 232, 0.5);
+  letter-spacing: 0.04em;
+  margin-bottom: 42px;
+}
+
+.workGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+}
+
+.projectImage {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.projectMeta {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.projectLabel {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #e07c3a;
+}
+
+.projectTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 3vw, 36px);
+  color: #f5f0e8;
+  line-height: 1.05;
+}
+
+.projectDesc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba(245, 240, 232, 0.72);
+}
+
+.projectLink {
+  align-self: flex-start;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f5f0e8;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(245, 240, 232, 0.35);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.projectLink:hover {
+  color: #e07c3a;
+  border-color: #e07c3a;
+}
+
+@media (max-width: 980px) {
+  .workGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .workGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .projectImage {
+    height: 200px;
+  }
+}
