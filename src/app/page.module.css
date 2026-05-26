@@ -1176,8 +1176,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .skillGrid,
-  .experienceGrid,
+  .skillGrid {
+    grid-template-columns: 1fr;
+  }
+
   .contactGrid {
     grid-template-columns: 1fr;
   }
@@ -1188,6 +1190,7 @@
   }
 }
 
+/* ─── Tablet (max 768px) ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .menuToggle {
     display: flex;
@@ -1202,7 +1205,7 @@
     background: rgba(4, 4, 6, 0.94);
     backdrop-filter: blur(32px) saturate(180%);
     -webkit-backdrop-filter: blur(32px) saturate(180%);
-    border-left: 1px solid rgba(224, 124, 58, 0.15); /* glowing accent border */
+    border-left: 1px solid rgba(224, 124, 58, 0.15);
     box-shadow: -15px 0 50px rgba(0, 0, 0, 0.92);
     flex-direction: column;
     justify-content: flex-start;
@@ -1261,7 +1264,6 @@
     display: none !important;
   }
 
-  /* Slide highlight on tap */
   .navLinks a:active,
   .navLinks a:hover {
     color: #e07c3a !important;
@@ -1270,12 +1272,10 @@
     text-shadow: 0 0 10px rgba(224, 124, 58, 0.35);
   }
 
-  /* Staggered entrance animations for links */
   .linksOpen a {
     animation: sgLinkIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  /* Staggered delays for the 7 links */
   .linksOpen a:nth-of-type(1) { animation-delay: 0.14s; }
   .linksOpen a:nth-of-type(2) { animation-delay: 0.18s; }
   .linksOpen a:nth-of-type(3) { animation-delay: 0.22s; }
@@ -1283,6 +1283,55 @@
   .linksOpen a:nth-of-type(5) { animation-delay: 0.30s; }
   .linksOpen a:nth-of-type(6) { animation-delay: 0.34s; }
   .linksOpen a:nth-of-type(7) { animation-delay: 0.38s; }
+
+  /* Sections padding reduction */
+  .aboutSection,
+  .contactSection {
+    padding: 80px 24px;
+  }
+
+  .section {
+    padding: 80px 24px;
+  }
+
+  .sectionHeading {
+    font-size: clamp(40px, 9vw, 72px);
+  }
+
+  .aboutHeading {
+    font-size: clamp(36px, 8vw, 72px);
+  }
+
+  /* Contact grid stacks */
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .contactForm {
+    padding: 28px 20px;
+  }
+
+  /* Footer */
+  .footerInner {
+    grid-template-columns: 1fr;
+    padding: 40px 24px 28px;
+    gap: 28px;
+  }
+
+  .footerSocials {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footerBottom {
+    padding: 20px 24px 28px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
 
 @keyframes sgMenuHeaderIn {
@@ -1299,7 +1348,8 @@
   }
 }
 
-@media (max-width: 720px) {
+/* ─── Mobile (max 600px) ─────────────────────────────────────────────────── */
+@media (max-width: 600px) {
   .workGrid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1317,48 +1367,37 @@
     height: 58px;
   }
 
-  .buttonRow,
-  .resumeActions {
-    justify-content: center;
-    gap: 14px;
+  .aboutSection,
+  .contactSection {
+    padding: 64px 20px;
   }
 
-  .footerInner {
-    grid-template-columns: 1fr;
-    padding: 36px 20px 28px;
-    gap: 28px;
+  .section {
+    padding: 64px 20px;
   }
 
-  .footerSocials {
-    align-items: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .footerBottom {
-    padding: 16px 20px 24px;
-  }
-}
-
-@media (max-width: 600px) {
-  /* Prevent horizontal squeeze by dropping padding slightly */
   .skillCard,
   .experienceCard,
   .educationCard,
   .contactForm,
   .contactItem {
-    padding: 20px !important;
-    border-radius: 20px !important;
+    padding: 24px 20px;
+    border-radius: 24px;
   }
 
-  /* Prevent overlapping text in certifications */
+  .skillCard h3,
+  .experienceCard h3,
+  .educationCard h3 {
+    font-size: 24px;
+  }
+
+  /* Certifications: stack name + issuer vertically */
   .certItem {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
-    padding: 16px 20px !important;
-    border-radius: 16px !important;
+    gap: 8px;
+    padding: 18px 20px;
+    border-radius: 20px;
   }
 
   .certItem strong {
@@ -1369,17 +1408,44 @@
   .certItem span {
     font-size: 11px;
   }
+
+  .buttonRow,
+  .resumeActions {
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .footerInner {
+    padding: 36px 20px 24px;
+  }
+
+  .footerBottom {
+    padding: 16px 20px 24px;
+  }
+
+  .formButton {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
 }
 
+/* ─── Small Mobile (max 480px) ───────────────────────────────────────────── */
 @media (max-width: 480px) {
-  /* Modern Full Width Touch Buttons for Mobile */
   .aboutLink,
   .contactLink {
     width: 100%;
-    min-width: 100%;
+    min-width: unset;
     padding: 16px 20px;
     font-size: 11px;
     border-radius: 30px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .aboutActions {
+    flex-direction: column;
+    gap: 12px;
   }
 
   .buttonRow,
@@ -1390,13 +1456,47 @@
   }
 
   .resumeCard {
-    padding: 20px !important;
+    padding: 20px;
   }
 
   .resumeCard p {
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 20px;
+  }
+
+  .sectionHeading {
+    font-size: clamp(32px, 10vw, 56px);
+  }
+
+  .aboutHeading {
+    font-size: clamp(30px, 10vw, 52px);
+  }
+
+  .sectionSub,
+  .aboutText {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .skillTag {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .experienceMeta,
+  .educationMeta {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+  }
+
+  .footerTagline {
+    font-size: 14px;
+  }
+
+  .footerSocialLink {
+    font-size: 11px;
+    padding: 8px 14px;
   }
 }
 

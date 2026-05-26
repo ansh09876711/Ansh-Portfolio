@@ -353,6 +353,101 @@
 }
 
 /* ──────────────────────────────────────
+   RESPONSIVE — xs (below 640px) MOBILE
+────────────────────────────────────── */
+@media (max-width: 639px) {
+  .section {
+    margin-top: -2rem;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    padding: 4rem 1rem 6rem;
+  }
+
+  .heading {
+    font-size: clamp(2.8rem, 16vw, 5rem);
+    margin-bottom: 3rem;
+  }
+
+  /* Card wrapper: reduce sticky offset, full height */
+  .cardWrapper {
+    height: auto;
+    min-height: 85vh;
+    padding: 1rem 0.5rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+  }
+
+  .card {
+    height: auto;
+    min-height: 75vh;
+    border-radius: 28px;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  /* Stack number + info vertically on tiny screens */
+  .cardMeta {
+    gap: 0.5rem;
+    flex-direction: column;
+  }
+
+  .cardNumber {
+    font-size: clamp(2.5rem, 18vw, 5rem);
+    line-height: 1;
+  }
+
+  .cardInfo {
+    padding-top: 0;
+    gap: 0.4rem;
+  }
+
+  .cardName {
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
+  }
+
+  .cardDescription {
+    font-size: 0.8rem;
+    max-width: 100%;
+  }
+
+  .cardButtonWrap {
+    padding-top: 0.25rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* Single image: fixed height on mobile */
+  .singleImageContainer {
+    border-radius: 20px;
+    min-height: 200px;
+    flex: none;
+    height: 220px;
+  }
+
+  /* Image grid: stack to single column */
+  .imageGrid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    flex: none;
+  }
+
+  .imageColLeft {
+    display: none; /* hide duplicate images on mobile, show only right col */
+  }
+
+  .imageColRight {
+    border-radius: 20px;
+    height: 220px;
+    min-height: 220px;
+  }
+
+  .imageSmall,
+  .imageLarge {
+    border-radius: 20px;
+  }
+}
+
+/* ──────────────────────────────────────
    RESPONSIVE — sm (640px+)
 ────────────────────────────────────── */
 @media (min-width: 640px) {

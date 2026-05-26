@@ -2,7 +2,7 @@
 
 A premium cinematic portfolio built with Next.js, Three.js, and GSAP — featuring a full-screen video hero, interactive 3D particles, sticky project cards, and a glassmorphism design system.
 
-**Live:** [ansh-portfolio.vercel.app](https://ansh-portfolio.vercel.app) &nbsp;|&nbsp; **GitHub:** [@ansh09876711](https://github.com/ansh09876711)
+**Live:** [ansh-portfolio.vercel.app](https://ansh-portfolio-ansh09876711.vercel.app) &nbsp;|&nbsp; **GitHub:** [@ansh09876711](https://github.com/ansh09876711)
 
 ---
 

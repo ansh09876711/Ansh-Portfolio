@@ -237,18 +237,48 @@
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .content {
-    padding: 0 24px;
+    padding: 0 20px;
     justify-content: flex-end;
-    padding-bottom: 100px;
+    padding-bottom: 110px;
   }
 
   .gradientOverlay {
     background:
-      linear-gradient(to top, rgba(4,4,4,0.95) 0%, rgba(4,4,4,0.3) 55%, transparent 100%);
+      linear-gradient(to top, rgba(4,4,4,0.97) 0%, rgba(4,4,4,0.4) 55%, transparent 100%);
+  }
+
+  .nameFirst,
+  .nameLast {
+    font-size: clamp(60px, 18vw, 100px);
+  }
+
+  .roleText {
+    font-size: clamp(13px, 3.5vw, 16px);
+    max-width: 100%;
+  }
+
+  .tagline {
+    font-size: 9px;
+    letter-spacing: 0.25em;
   }
 
   .controls {
-    bottom: 24px;
-    right: 20px;
+    bottom: 20px;
+    right: 16px;
+    gap: 8px;
+  }
+
+  .ctrlBtn {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .soundBadge {
+    display: none; /* hide text badge on very small screens */
+  }
+
+  .scrollIndicator {
+    display: none; /* avoid overlap with content on mobile */
   }
 }
