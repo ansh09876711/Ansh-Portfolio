@@ -13,21 +13,24 @@ export default function CinematicLayer({ containerRef }: CinematicLayerProps) {
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return
 
-    let THREE: typeof import('three')
     let animFrameId: number
-    let renderer: import('three').WebGLRenderer
     let disposed = false
 
     const container = containerRef.current
     const canvas = canvasRef.current
 
+    // Show canvas immediately — no waiting
+    canvas.style.opacity = '0'
+
     async function init() {
-      THREE = await import('three')
+      // Import Three.js — still async but we start fade-in as soon as it's ready
+      const THREE = await import('three')
+      if (disposed) return
 
       const W = container.clientWidth
       const H = container.clientHeight
 
-      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false })
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false })
       renderer.setSize(W, H)
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5))
       renderer.setClearColor(0x000000, 0)
@@ -36,10 +39,12 @@ export default function CinematicLayer({ containerRef }: CinematicLayerProps) {
       const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 100)
       camera.position.z = 5
 
-      // --- Particles ---
-      const COUNT = 320
+      // ── Particles ──────────────────────────────────────────────────────────
+      // Reduce particle count on mobile for better performance
+      const isMobile = window.innerWidth < 768
+      const COUNT = isMobile ? 200 : 380
       const positions = new Float32Array(COUNT * 3)
-      const colors = new Float32Array(COUNT * 3)
+      const colors    = new Float32Array(COUNT * 3)
       const offsets: number[] = []
 
       const palette = [
@@ -69,10 +74,10 @@ export default function CinematicLayer({ containerRef }: CinematicLayerProps) {
       geo.setAttribute('color',    new THREE.BufferAttribute(colors, 3))
 
       const mat = new THREE.PointsMaterial({
-        size: 0.055,
+        size: isMobile ? 0.055 : 0.065,  // smaller on mobile
         vertexColors: true,
         transparent: true,
-        opacity: 0.5,
+        opacity: isMobile ? 0.65 : 0.75,  // slightly dimmer on mobile
         blending: THREE.AdditiveBlending,
         depthWrite: false,
         sizeAttenuation: true,
@@ -81,7 +86,12 @@ export default function CinematicLayer({ containerRef }: CinematicLayerProps) {
       const particles = new THREE.Points(geo, mat)
       scene.add(particles)
 
-      // Mouse parallax
+      // ── Instant fade-in via CSS transition ────────────────────────────────
+      // As soon as Three is ready, fade canvas in quickly (0.4 s)
+      canvas.style.transition = 'opacity 0.4s ease'
+      canvas.style.opacity    = '1'
+
+      // ── Mouse parallax ────────────────────────────────────────────────────
       let mouseX = 0, mouseY = 0
       const onMouseMove = (e: MouseEvent) => {
         const rect = container.getBoundingClientRect()
@@ -113,7 +123,7 @@ export default function CinematicLayer({ containerRef }: CinematicLayerProps) {
       }
       animate()
 
-      // Resize
+      // ── Resize ─────────────────────────────────────────────────────────────
       const onResize = () => {
         const nW = container.clientWidth
         const nH = container.clientHeight
@@ -126,6 +136,7 @@ export default function CinematicLayer({ containerRef }: CinematicLayerProps) {
       return () => {
         container.removeEventListener('mousemove', onMouseMove)
         window.removeEventListener('resize', onResize)
+        renderer.dispose()
       }
     }
 
@@ -134,9 +145,15 @@ export default function CinematicLayer({ containerRef }: CinematicLayerProps) {
     return () => {
       disposed = true
       cancelAnimationFrame(animFrameId)
-      renderer?.dispose()
     }
   }, [containerRef])
 
-  return <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
+  return (
+    <canvas
+      ref={canvasRef}
+      className={styles.canvas}
+      aria-hidden="true"
+      style={{ opacity: 0 }}   // start invisible — JS sets to 1 immediately after load
+    />
+  )
 }

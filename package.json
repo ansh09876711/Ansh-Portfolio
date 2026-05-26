@@ -1,23 +1,32 @@
 {
   "name": "cinematic-portfolio",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "A premium cinematic portfolio built with Next.js, Three.js, and GSAP",
+  "author": "Ansh Agarwal",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
     "three": "^0.165.0",
-    "gsap": "^3.12.5"
+    "gsap": "^3.12.5",
+    "framer-motion": "^11.3.8"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/three": "^0.165.0",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }

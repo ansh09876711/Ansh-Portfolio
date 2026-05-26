@@ -1,0 +1,479 @@
+/* ──────────────────────────────────────
+   PREMIUM SECTION WRAPPER
+────────────────────────────────────── */
+.section {
+  position: relative;
+  z-index: 10;
+  margin-top: -3rem;
+  width: 100%;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1520 100%);
+  padding: 6rem 2rem 12rem;
+  overflow: visible;
+  min-height: 100vh;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(224, 124, 58, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(100px);
+  animation: floatOrb 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translate(-50%, 0) scale(1); }
+  50% { transform: translate(-50%, -30px) scale(1.1); }
+}
+
+/* ──────────────────────────────────────
+   PREMIUM HEADING
+────────────────────────────────────── */
+.heading {
+  text-align: center;
+  font-weight: 900;
+  font-family: 'Kanit', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 5rem;
+  font-size: clamp(3.5rem, 13vw, 180px);
+  background: linear-gradient(135deg, #f5f0e8 0%, #e0c88c 50%, #f5f0e8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 0 80px rgba(224, 124, 58, 0.3);
+}
+
+/* ──────────────────────────────────────
+   CARD LIST CONTAINER - STACKING LAYOUT
+────────────────────────────────────── */
+.cardList {
+  margin: 0 auto;
+  max-width: 90rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ──────────────────────────────────────
+   STICKY CARD WRAPPER - STACKING EFFECT
+────────────────────────────────────── */
+.cardWrapper {
+  position: sticky;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  margin-bottom: 4rem;
+}
+
+/* ──────────────────────────────────────
+   PREMIUM CARD ARTICLE - STACKING DESIGN
+────────────────────────────────────── */
+.card {
+  transform-origin: top center;
+  height: 80vh;
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-radius: 50px;
+  border: 2px solid rgba(224, 124, 58, 0.25);
+  background: linear-gradient(135deg, rgba(8, 8, 12, 0.98) 0%, rgba(12, 12, 18, 0.95) 100%);
+  padding: 2rem;
+  box-sizing: border-box;
+  backdrop-filter: blur(24px);
+  box-shadow: 
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    0 10px 40px rgba(224, 124, 58, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(224, 124, 58, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  transition: all 0.8s ease;
+  pointer-events: none;
+}
+
+.card:hover {
+  border-color: rgba(224, 124, 58, 0.6);
+  box-shadow: 
+    0 35px 100px rgba(0, 0, 0, 0.7),
+    0 15px 50px rgba(224, 124, 58, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.card:hover::before {
+  top: -30%;
+  right: -30%;
+  width: 500px;
+  height: 500px;
+}
+
+/* ──────────────────────────────────────
+   PREMIUM CARD TOP ROW
+────────────────────────────────────── */
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cardMeta {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.cardNumber {
+  flex-shrink: 0;
+  font-weight: 900;
+  font-family: 'Kanit', sans-serif;
+  background: linear-gradient(135deg, #f5f0e8 0%, #e0c88c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  font-size: clamp(3rem, 11vw, 160px);
+  text-shadow: 0 0 40px rgba(224, 124, 58, 0.3);
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.cardCategory {
+  font-weight: 300;
+  font-family: 'Kanit', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(224, 124, 58, 0.8);
+  font-size: clamp(0.7rem, 1.3vw, 1.1rem);
+  padding: 6px 16px;
+  background: rgba(224, 124, 58, 0.08);
+  border-radius: 20px;
+  width: fit-content;
+  border: 1px solid rgba(224, 124, 58, 0.2);
+}
+
+.cardName {
+  font-weight: 600;
+  font-family: 'Kanit', sans-serif;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #f5f0e8 0%, #e0c88c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.25;
+  font-size: clamp(1.3rem, 2.5vw, 2.4rem);
+  margin: 0;
+}
+
+.cardDescription {
+  font-family: 'Kanit', sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  color: rgba(245, 240, 232, 0.5);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 480px;
+}
+
+.cardButtonWrap {
+  flex-shrink: 0;
+  align-self: flex-start;
+  padding-top: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ──────────────────────────────────────
+   IMAGE GRID
+────────────────────────────────────── */
+.imageGrid {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 0.75rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.imageColLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 0;
+}
+
+.imageSmall {
+  overflow: hidden;
+  border-radius: 40px;
+  height: clamp(130px, 16vw, 230px);
+  flex-shrink: 0;
+  background: rgba(20, 20, 25, 0.6);
+  border: 1px solid rgba(224, 124, 58, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.imageSmall:hover {
+  border-color: rgba(224, 124, 58, 0.3);
+}
+
+.imageLarge {
+  overflow: hidden;
+  border-radius: 40px;
+  height: clamp(160px, 22vw, 340px);
+  flex-shrink: 0;
+  background: rgba(20, 20, 25, 0.6);
+  border: 1px solid rgba(224, 124, 58, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.imageLarge:hover {
+  border-color: rgba(224, 124, 58, 0.3);
+}
+
+.imageColRight {
+  overflow: hidden;
+  border-radius: 40px;
+  min-height: 0;
+  background: rgba(20, 20, 25, 0.6);
+  border: 1px solid rgba(224, 124, 58, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.imageColRight:hover {
+  border-color: rgba(224, 124, 58, 0.3);
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.singleImageContainer {
+  overflow: hidden;
+  border-radius: 40px;
+  flex: 1;
+  min-height: 0;
+  background: rgba(20, 20, 25, 0.6);
+  border: 1px solid rgba(224, 124, 58, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.singleImageContainer:hover {
+  border-color: rgba(224, 124, 58, 0.3);
+}
+
+.singleImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* ──────────────────────────────────────
+   IMAGE PLACEHOLDER
+────────────────────────────────────── */
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(215, 226, 234, 0.15);
+  gap: 0.5rem;
+}
+
+.imagePlaceholder span {
+  font-size: 2rem;
+  opacity: 0.5;
+}
+
+.imagePlaceholder p {
+  font-family: 'Kanit', sans-serif;
+  font-size: 0.875rem;
+  color: rgba(215, 226, 234, 0.4);
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* ──────────────────────────────────────
+   RESPONSIVE — sm (640px+)
+────────────────────────────────────── */
+@media (min-width: 640px) {
+  .section {
+    margin-top: -3rem;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    padding: 6rem 1.5rem 6rem;
+  }
+
+  .heading {
+    margin-bottom: 5rem;
+  }
+
+  .card {
+    border-radius: 50px;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .cardTop {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .cardMeta {
+    gap: 1.5rem;
+  }
+
+  .cardInfo {
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+  }
+
+  .cardButtonWrap {
+    padding-top: 0.5rem;
+    width: auto;
+    flex-wrap: nowrap;
+  }
+
+  .imageGrid {
+    gap: 1rem;
+  }
+
+  .imageColLeft {
+    gap: 1rem;
+  }
+
+  .imageSmall {
+    border-radius: 50px;
+  }
+
+  .imageLarge {
+    border-radius: 50px;
+  }
+
+  .imageColRight {
+    border-radius: 50px;
+  }
+
+  .singleImageContainer {
+    border-radius: 50px;
+  }
+}
+
+/* ──────────────────────────────────────
+   RESPONSIVE — md (768px+)
+────────────────────────────────────── */
+@media (min-width: 768px) {
+  .section {
+    margin-top: -3.5rem;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+    padding: 8rem 2.5rem 6rem;
+  }
+
+  .heading {
+    margin-bottom: 7rem;
+  }
+
+  .card {
+    border-radius: 60px;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .cardMeta {
+    gap: 2.5rem;
+  }
+
+  .cardInfo {
+    padding-top: 1rem;
+  }
+
+  .cardButtonWrap {
+    padding-top: 0.75rem;
+  }
+
+  .imageGrid {
+    gap: 1.25rem;
+  }
+
+  .imageColLeft {
+    gap: 1.25rem;
+  }
+
+  .imageSmall {
+    border-radius: 60px;
+  }
+
+  .imageLarge {
+    border-radius: 60px;
+  }
+
+  .imageColRight {
+    border-radius: 60px;
+  }
+
+  .singleImageContainer {
+    border-radius: 60px;
+  }
+}

@@ -8,6 +8,30 @@
   background: #080808;
 }
 
+/* ─── Loading Overlay ────────────────────────────────────────────────────── */
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: #080808;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingSpinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(224, 124, 58, 0.2);
+  border-top-color: #e07c3a;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ─── Video Layers ───────────────────────────────────────────────────────── */
 .ambientVideo {
   position: absolute;

@@ -6,15 +6,145 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
-  background: #080808;
-  color: #f5f0e8;
+  background: linear-gradient(135deg, #0a0a0f 0%, #050508 100%);
+  color: #d7e2ea;
+  font-family: 'Kanit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(224, 124, 58, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(224, 124, 58, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ambientPulse 15s ease-in-out infinite;
+}
+
+@keyframes ambientPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
 
 ::selection {
-  background: rgba(224, 124, 58, 0.35);
+  background: rgba(224, 124, 58, 0.3);
   color: #f5f0e8;
+}
+
+/* Gradient heading used by the Projects section title */
+.hero-heading {
+  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* Premium Custom Scrollbar with Animation */
+::-webkit-scrollbar { 
+  width: 12px; 
+  background: #0a0a0f; 
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, #0a0a0f 0%, #050508 100%);
+  border-left: 1px solid rgba(224, 124, 58, 0.08);
+}
+
+::-webkit-scrollbar-thumb { 
+  background: linear-gradient(180deg, rgba(224, 124, 58, 0.5) 0%, rgba(224, 124, 58, 0.3) 100%);
+  border-radius: 10px;
+  border: 2px solid #0a0a0f;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover { 
+  background: linear-gradient(180deg, rgba(224, 124, 58, 0.7) 0%, rgba(224, 124, 58, 0.5) 100%);
+  box-shadow: 0 0 15px rgba(224, 124, 58, 0.6);
+  transform: scaleX(1.2);
+}
+
+/* Smooth transitions for interactive elements */
+a, button {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Premium Focus styles with animation */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid #e07c3a;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(224, 124, 58, 0.2);
+  animation: focusPulse 1s ease-in-out infinite;
+}
+
+@keyframes focusPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(224, 124, 58, 0.2); }
+  50% { box-shadow: 0 0 0 6px rgba(224, 124, 58, 0.4); }
+}
+
+/* Fade-in animation for page load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale-in animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide-in from left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide-in from right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

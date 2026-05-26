@@ -21,6 +21,7 @@ export default function VideoIntro({ videoSrc }: VideoIntroProps) {
   const [muted,   setMuted]   = useState(true)
   const [playing, setPlaying] = useState(true)
   const [showBadge, setShowBadge] = useState(true)
+  const [videoLoaded, setVideoLoaded] = useState(false)
 
   // Auto-hide sound badge
   useEffect(() => {
@@ -38,30 +39,31 @@ export default function VideoIntro({ videoSrc }: VideoIntroProps) {
 
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
+      // Start animations earlier — reduced all delays significantly
       tl.fromTo(taglineRef.current,
         { opacity: 0, y: 14 },
-        { opacity: 1, y: 0, duration: 0.9 },
-        0.5
+        { opacity: 1, y: 0, duration: 0.7 },
+        0.1   // was 0.5
       )
       .fromTo(nameFirstRef.current,
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1.15 },
-        0.8
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.85 },
+        0.25  // was 0.8
       )
       .fromTo(nameLastRef.current,
-        { opacity: 0, y: 80 },
-        { opacity: 1, y: 0, duration: 1.15 },
-        1.0
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.85 },
+        0.4   // was 1.0
       )
       .fromTo(roleRef.current,
-        { opacity: 0, y: 12 },
-        { opacity: 1, y: 0, duration: 0.95 },
-        1.25
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.75 },
+        0.6   // was 1.25
       )
       .fromTo(scrollIndRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.9 },
-        1.9
+        { opacity: 1, duration: 0.7 },
+        1.0   // was 1.9
       )
     }
 
@@ -87,24 +89,36 @@ export default function VideoIntro({ videoSrc }: VideoIntroProps) {
     }
   }, [playing])
 
-  // Video fade-in on canplay
+  // Video fade-in — trigger on loadeddata (fires earlier than canplay)
   useEffect(() => {
     const v = mainVideoRef.current
     if (!v) return
-    const onCanPlay = async () => {
+    const onLoaded = async () => {
       const mod = await import('gsap')
-      mod.gsap.to(v, { opacity: 1, duration: 1.6, ease: 'power2.inOut' })
+      // 0.8s smooth fade-in
+      mod.gsap.to(v, { opacity: 1, duration: 0.8, ease: 'power2.out' })
+      setVideoLoaded(true)
     }
-    v.addEventListener('canplay', onCanPlay)
-    return () => v.removeEventListener('canplay', onCanPlay)
+    // loadeddata fires as soon as first frame is ready — much earlier than canplay
+    v.addEventListener('loadeddata', onLoaded)
+    // Fallback: if already loaded (cached), fire immediately
+    if (v.readyState >= 2) onLoaded()
+    return () => v.removeEventListener('loadeddata', onLoaded)
   }, [])
 
   const scrollToWork = () => {
-    document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <section ref={heroRef} className={styles.hero}>
+      {/* Loading indicator */}
+      {!videoLoaded && (
+        <div className={styles.loadingOverlay}>
+          <div className={styles.loadingSpinner} />
+        </div>
+      )}
+
       {/* Ambient blurred background layer */}
       <video
         ref={ambientRef}
@@ -114,6 +128,7 @@ export default function VideoIntro({ videoSrc }: VideoIntroProps) {
         loop
         muted
         playsInline
+        preload="auto"
         aria-hidden="true"
       />
 
@@ -126,6 +141,7 @@ export default function VideoIntro({ videoSrc }: VideoIntroProps) {
         loop
         muted
         playsInline
+        preload="auto"
       />
 
       {/* Three.js particle layer */}
@@ -140,7 +156,7 @@ export default function VideoIntro({ videoSrc }: VideoIntroProps) {
       {/* Landing copy */}
       <div className={styles.content}>
         <p ref={taglineRef} className={styles.tagline}>
-          — AI / ML DEVELOPER &amp; Creative Full Stack Engineer
+          — AI/ML Engineer &amp; CSE Student
         </p>
 
         <div className={styles.nameBlock} aria-label="Ansh Agarwal">
@@ -149,10 +165,10 @@ export default function VideoIntro({ videoSrc }: VideoIntroProps) {
         </div>
 
         <p ref={roleRef} className={styles.roleText}>
-          Crafting{' '}
+          Crafting {' '}
           <span className={styles.roleAccent}>cinematic digital experiences</span>
           <br />
-          where code meets intelligence.
+           and where code meets intelligence.
         </p>
       </div>
 
