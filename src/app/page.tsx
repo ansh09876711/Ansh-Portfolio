@@ -8,20 +8,24 @@ import styles from './page.module.css'
 
 const skillGroups = [
   {
+    label: 'Languages',
+    skills: ['Python', 'JavaScript', 'C', 'C++', 'Java', 'HTML/CSS'],
+  },
+  {
+    label: 'Frameworks & Libraries',
+    skills: ['Node.js', 'Express', 'Flask', 'React', 'FastAPI', 'AJAX'],
+  },
+  {
     label: 'DevOps & Cloud',
-    skills: ['Docker', 'CI/CD', 'Linux', 'Git', 'GitHub', 'AWS', 'Kubernetes', 'Terraform'],
+    skills: ['Docker', 'CI/CD', 'Git', 'Linux', 'AWS', 'GCP'],
   },
   {
-    label: 'Programming',
-    skills: ['Python', 'Java', 'C', 'C++', 'HTML', 'CSS', 'JavaScript'],
+    label: 'Database & Security',
+    skills: ['PostgreSQL', 'SQL', 'Firebase', 'Cybersecurity', 'Cryptography'],
   },
   {
-    label: 'Web & Backend',
-    skills: ['Node.js', 'Express', 'Flask', 'ASP.NET Web API', 'REST APIs', 'PostgreSQL'],
-  },
-  {
-    label: 'Security & Data',
-    skills: ['Cybersecurity', 'Cryptography', 'SQL', 'Data Visualization', 'Machine Learning Basics'],
+    label: 'AI / ML',
+    skills: ['ML Basics', 'Generative AI', 'RAG Systems', 'LLM APIs'],
   },
 ]
 
@@ -181,7 +185,7 @@ export default function Home() {
           </p>
           <div className={styles.aboutActions}>
             <Magnet strength={3.5} padding={40}>
-              <a className={styles.aboutLink} href="/Purple%20and%20White%20Clean%20and%20Professional%20Resume%20(1).pdf" download="Ansh_Agarwal_Resume.pdf">
+              <a className={styles.aboutLink} href="/Ansh%20Agarwal%20%E2%80%94%20Resume.pdf" download="Ansh_Agarwal_Resume.pdf">
                 Download Resume
               </a>
             </Magnet>
@@ -348,7 +352,7 @@ export default function Home() {
             <a className={styles.footerSocialLink} href="https://github.com/ansh09876711" target="_blank" rel="noreferrer">GitHub</a>
             <a className={styles.footerSocialLink} href="https://www.linkedin.com/in/ansh-agarwal-19051a278" target="_blank" rel="noreferrer">LinkedIn</a>
             <a className={styles.footerSocialLink} href="mailto:ANSH230133@CST.SDBC.AC.IN">Email</a>
-            <a className={styles.footerSocialLink} href="/Purple%20and%20White%20Clean%20and%20Professional%20Resume%20(1).pdf" download="Ansh_Agarwal_Resume.pdf">Resume</a>
+            <a className={styles.footerSocialLink} href="/Ansh%20Agarwal%20%E2%80%94%20Resume.pdf" download="Ansh_Agarwal_Resume.pdf">Resume</a>
           </div>
         </div>
         <div className={styles.footerBottom}>
